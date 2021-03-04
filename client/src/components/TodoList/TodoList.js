@@ -3,6 +3,7 @@ import wretch from "wretch";
 import { Link } from "react-router-dom";
 
 import "./TodoList.css";
+import Button from "../Button";
 
 const TodoList = () => {
     const [todos, setTodos] = useState([]);
@@ -42,11 +43,14 @@ const TodoList = () => {
                             <td>{todo?.name}</td>
                             <td className="todo-list-actions">
                                 <Link to={`/edit/${todo?.id}`}>
-                                    <button>Edit</button>
+                                    <Button>Edit</Button>
                                 </Link>
-                                <button onClick={() => onDelete(todo?.id)}>
+                                <Button
+                                    variant={Button.variants.delete}
+                                    onClick={() => onDelete(todo?.id)}
+                                >
                                     Delete
-                                </button>
+                                </Button>
                             </td>
                         </tr>
                     ))}

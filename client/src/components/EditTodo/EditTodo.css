@@ -1,3 +1,15 @@
 .app-edit-todo {
     display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: flex-start;
+}
+
+.app-edit-todo__label {
+    display: block;
+    margin-bottom: 4px;
+}
+
+.app-edit-todo__save {
+    margin-top: 16px;
 }

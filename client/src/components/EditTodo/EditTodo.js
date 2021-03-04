@@ -1,19 +1,42 @@
 import React, { useCallback, useEffect, useState } from "react";
 import wretch from "wretch";
-import { useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 
-const EditTodo = () => {
-    const [todo, setTodo] = useState(null);
+import Input from "../Input";
+import Button from "../Button";
+
+import "./EditTodo.css";
+
+const EditTodo = ({ create }) => {
+    const history = useHistory();
     const { todoId } = useParams();
+    const [todo, setTodo] = useState({});
 
     const onChange = useCallback(({ target: { name, value } }) => {
         setTodo((todo) => {
             if (todo) {
                 todo[name] = value;
             }
-            return todo ? { ...todo } : null;
+            return todo ? { ...todo } : {};
         });
     }, []);
+
+    const onSave = useCallback(() => {
+        if (!todoId && !create) return;
+        if (!create) {
+            wretch(`http://localhost:8080/todos/${todoId}`)
+                .put(todo)
+                .json()
+                .then(() => history.push("/"))
+                .catch(() => alert("There was an error while saving todo!"));
+        } else {
+            wretch("http://localhost:8080/todos")
+                .post(todo)
+                .json()
+                .then(() => history.push("/"))
+                .catch(() => alert("There was an error while saving todo!"));
+        }
+    }, [todo]);
 
     useEffect(() => {
         if (!todoId) return;
@@ -27,13 +50,18 @@ const EditTodo = () => {
         <div className="app-edit-todo">
             <h2>Edit Todo</h2>
             <div>
-                <label for="name">Name: </label>
-                <input
+                <label htmlFor="name" className="app-edit-todo__label">
+                    Name:
+                </label>
+                <Input
                     name="name"
                     value={todo?.name || ""}
                     onChange={onChange}
                 />
             </div>
+            <Button className="app-edit-todo__save" onClick={onSave}>
+                Save
+            </Button>
         </div>
     );
 };

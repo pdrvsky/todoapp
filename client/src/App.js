@@ -18,6 +18,9 @@ export default class App extends Component {
                         <Route path="/" exact>
                             <TodoList />
                         </Route>
+                        <Route path="/new" exact>
+                            <EditTodo create />
+                        </Route>
                         <Route path="/edit/:todoId" exact>
                             <EditTodo />
                         </Route>

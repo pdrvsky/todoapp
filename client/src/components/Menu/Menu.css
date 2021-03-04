@@ -1,14 +1,19 @@
 .app-menu {
+    display: flex;
     margin-left: auto;
     list-style: none;
 }
 
+.app-menu li {
+    margin-right: 16px;
+}
+
+.app-menu li:last-of-type {
+    margin-right: 0;
+}
+
 .app-menu li a {
     text-decoration: none;
-    padding: 6px 12px;
-    border-radius: 4px;
-    background: var(--primary);
-    color: var(--background);
 }
 
 .app-menu li a:hover {
