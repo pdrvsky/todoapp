@@ -1,0 +1,20 @@
+.app-menu {
+    margin-left: auto;
+    list-style: none;
+}
+
+.app-menu li a {
+    text-decoration: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    background: var(--primary);
+    color: var(--background);
+}
+
+.app-menu li a:hover {
+    opacity: 0.9;
+}
+
+.app-menu li a:visited {
+    color: var(--background);
+}

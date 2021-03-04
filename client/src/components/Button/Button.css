@@ -1,0 +1,10 @@
+.app-button {
+    padding: 6px 12px;
+    border-radius: 4px;
+    background: var(--primary);
+    color: var(--background);
+}
+
+.app-button--secondary {
+    background: var(--secondary);
+}
